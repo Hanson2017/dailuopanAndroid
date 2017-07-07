@@ -1,4 +1,4 @@
-package com.dailuopan;
+package dailuopan.android;
 
 import com.facebook.react.ReactActivity;
 

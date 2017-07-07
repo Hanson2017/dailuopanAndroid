@@ -1,4 +1,4 @@
-package com.dailuopan.wxapi; // net.sourceforge.simcpux处为你的包名 
+package dailuopan.android.wxapi; // net.sourceforge.simcpux处为你的包名 
  
 import android.app.Activity;
 import android.os.Bundle;

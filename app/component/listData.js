@@ -127,7 +127,7 @@ export default class PingjiAll extends React.Component {
                 {
                     item.fund_type != 0 || this.props.Ttype || flmllist.length > 0 ?
 
-                        <View style={{ position: 'absolute', bottom: 10, left: 15, flexDirection: 'row', }}>
+                        <View style={{ position: 'absolute', bottom: 10, left: 10, flexDirection: 'row', }}>
                             {
                                 this.props.Ttype ?
                                     <View style={stylesList.Ttype}>

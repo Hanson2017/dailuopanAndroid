@@ -156,7 +156,7 @@ module.exports = {
                                 loading: false,
                                 dataSource: responseData,
                             })
-                            console.log(responseData)
+                            console.log('responseData',responseData)
                         })
                 }
                 else {

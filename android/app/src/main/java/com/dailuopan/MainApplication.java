@@ -1,4 +1,4 @@
-package com.dailuopan;
+package dailuopan.android;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 import cn.reactnative.modules.qq.QQPackage;
