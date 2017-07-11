@@ -3,6 +3,7 @@ package dailuopan.android;
 import com.oblador.vectoricons.VectorIconsPackage;
 import cn.reactnative.modules.qq.QQPackage;
 import cn.reactnative.modules.wx.WeChatPackage;
+import com.microsoft.codepush.react.CodePush;
 import android.app.Application;
 
 
@@ -20,6 +21,12 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
+    @Override
+    protected String getJSBundleFile() {
+      return CodePush.getJSBundleFile();
+    }  
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -29,6 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage()
+            // ,new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG)
+            , new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
           , new VectorIconsPackage()
           ,new QQPackage()
           ,new WeChatPackage()
