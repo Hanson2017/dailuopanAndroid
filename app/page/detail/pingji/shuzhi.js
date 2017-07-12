@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Icomoon';
 import Echarts from 'native-echarts';
 import LineChart from '../../../echarts/line';
 import Api from '../../../util/api';
+import Title from '../../../component/Title';
 
 export default class Shuzhi extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class Shuzhi extends React.Component {
         };
     }
     render() {
-
+        var navigation = this.props.navigation;
         var data = this.props.data;
         var dataWdzj = data.wdzj;
         var dataP2peye = data.p2peye;
@@ -460,7 +461,29 @@ export default class Shuzhi extends React.Component {
                                 <Text style={[styles.td, styles.null]}>无评级</Text>
                             </View>
                     }
+                    <View style={styles.Title}>
+                        <View style={styles.TitleIcon}></View>
+                        <Text style={styles.TitleText}>"{this.props.platName}"用户还关注  <Text style={{ color: '#999', fontSize: 12, paddingLeft: 10, }}>绿色背景为“示范投资”进入平台</Text></Text>
+                    </View>
+                    <View style={styles.relatedList}>
+                        {
+                            this.props.replatData != null && this.props.replatData.length > 0 ?
+                                this.props.replatData.map((text, i) => {
+                                    return (
+                                        <TouchableOpacity style={[styles.related, text.fundtype != 0 ? styles.relatedActive : null]} key={i}
+                                            onPress={() => {
+                                                navigation.navigate('Detail', { id: text.id_dlp, platName: text.plat_name })
+                                            }}
 
+                                        >
+                                            <Text style={[styles.relatedText, text.fundtype != 0 ? styles.relatedTextActive : null]}>{text.plat_name}</Text>
+                                        </TouchableOpacity>
+                                    )
+                                })
+                                :
+                                <Text style={styles.null}>暂无用户关注</Text>
+                        }
+                    </View>
                     {/*羿飞评级 end*/}
                 </ScrollView >
             </View>
@@ -481,7 +504,7 @@ const styles = StyleSheet.create({
     },
     td: {
         color: '#ABB7C4',
-        fontSize:12.5,
+        fontSize: 12.5,
     },
     td1: {
         width: 70,
@@ -523,5 +546,50 @@ const styles = StyleSheet.create({
         color: '#ABB7C4',
         fontSize: 12.5,
     },
-   
+    relatedList: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        padding: 10,
+        paddingTop: 15,
+
+    },
+    related: {
+        marginRight: 10,
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 15,
+        height: 36,
+        backgroundColor: '#f7f7f7',
+        borderWidth: 1,
+        borderColor: '#e5e5e5',
+    },
+    relatedActive: {
+        backgroundColor: '#00a400',
+        borderColor: '#00a400',
+    },
+    relatedText: {
+        color: '#444',
+    },
+    relatedTextActive: {
+        color: '#fff',
+    },
+    Title: {
+        marginTop:15,
+        paddingLeft: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 34,
+        backgroundColor: '#dfe5ea'
+    },
+    TitleIcon: {
+        marginRight: 8,
+        width: 4,
+        height: 16,
+        backgroundColor: '#2c3641',
+    },
+    TitleText: {
+        color: '#2D3640',
+    },
 })

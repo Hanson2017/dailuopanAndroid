@@ -7,15 +7,15 @@ var BackboneEvents = require("backbone-events-standalone");
 window.EventEmitter = BackboneEvents.mixin({});
 
 export default class Dailuopan extends Component {
-  render() {
-    return (
-      <App />
-    );
-  }
-  componentDidMount(){
-    codePush.sync()
-  }
- 
+    render() {
+        return (
+            <App />
+        );
+    }
+    componentDidMount() {
+        codePush.sync()
+    }
+
 }
 
 AppRegistry.registerComponent('dailuopan', () => Dailuopan);

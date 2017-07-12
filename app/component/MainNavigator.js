@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, Button, DeviceEventEmitter,Platform } from 'react-native';
+import { Text, StyleSheet, Image, View, Button, DeviceEventEmitter, Platform, BackAndroid, ToastAndroid } from 'react-native';
 import { StackNavigator, TabNavigator } from "react-navigation";
 import Icon from 'react-native-vector-icons/Icomoon';
 import Drawer from 'react-native-drawer';
@@ -49,7 +49,7 @@ class DrawerScreen extends React.Component {
         let status = this.state.status;
         if (this.state.loading) {
             if (status == 1 && Platform.OS != 'android') {
-                versionStatus=1
+                versionStatus = 1
             }
             return (
                 <Drawer
@@ -110,9 +110,25 @@ class DrawerScreen extends React.Component {
                 console.log('退出登陆', signState)
             })
         ]
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
     }
     componentWillUnmount() {
         this.subscriptions.forEach((sub) => sub.off());
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    onBackAndroid = () => {
+        if (this.lastBackPressed && this.lastBackPressed + 4000 >= Date.now()) {
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+        return true;
+
     }
 }
 
