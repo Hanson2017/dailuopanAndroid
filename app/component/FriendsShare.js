@@ -20,13 +20,7 @@ export default class Share extends Component {
             offset: new Animated.Value(0),
             opacity: new Animated.Value(0),
             hide: true,
-            data: {
-                type: 'news',
-                title: '邀请好友',
-                description: '邀请好友',
-                webpageUrl: 'http://m.dailuopan.com/about/appdown',
-                imageUrl: 'http://dailuopan.com/images/shareDlp.png',
-            }
+            data: null
         }
     }
     async _setClipboardContent() {
@@ -47,6 +41,9 @@ export default class Share extends Component {
     }
     componentWillUnMount() {
         this.timer && clearTimeout(this.timer);
+    }
+    componentDidMount() {
+        this.show()
     }
     render() {
 
@@ -180,17 +177,17 @@ export default class Share extends Component {
     //取消  
     cancel(event) {
         if (!this.state.hide) {
+            this.props.navigation.goBack();
             this.outAnimated();
         }
     }
-    show(dataS) {
+    show() {
+        const { params } = this.props.navigation.state;
         if (this.state.hide) {
             this.setState({
                 hide: false,
-
+                data: params.data
             }, this.inAnimated);
-
-
         }
     }
     shareToQQ() {
