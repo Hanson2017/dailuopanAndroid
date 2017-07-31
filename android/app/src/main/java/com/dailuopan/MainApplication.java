@@ -6,8 +6,11 @@ import cn.reactnative.modules.wx.WeChatPackage;
 import com.microsoft.codepush.react.CodePush;
 import android.app.Application;
 
+import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatService;
 
-
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.reactnativejpush.JPushPackage;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -18,7 +21,12 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+
+
 public class MainApplication extends Application implements ReactApplication {
+
+    private boolean SHUTDOWN_TOAST = false;
+    private boolean SHUTDOWN_LOG = false;
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
@@ -41,6 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
           , new VectorIconsPackage()
           ,new QQPackage()
           ,new WeChatPackage()
+          ,new JPushPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)
       );
     }
   };
@@ -54,5 +63,22 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    StatService.trackCustomEvent(this, "onCreate", "");
+    JPushInterface.init(this);
   }
+
+  // @Override
+  //   protected void onPause() {
+  //       super.onPause();
+  //       JPushInterface.onPause(this);
+  //   }
+
+  //   @Override
+  //   protected void onResume() {
+  //       super.onResume();
+  //       JPushInterface.onResume(this);
+  //   }
+
 }
+
+    

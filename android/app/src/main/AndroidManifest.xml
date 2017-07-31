@@ -31,7 +31,32 @@
       android:label="@string/app_name"
       android:exported="true"
       />
+
+        <!-- 请将value改为MTA分配的appkey < -->
+        <meta-data
+            android:name="TA_APPKEY"
+            android:value="Aqc1105656193" />
+        <!-- 请将value改为APP的发布渠道（市场） < -->
+        <meta-data
+            android:name="InstallChannel"
+            android:value="应用宝Android" />
+
+        <!-- <provider
+            android:name="com.tencent.mid.api.MidProvider"
+            android:authorities="dailuopan.android.TENCENT.MID.V3"
+            android:exported="true" >
+        </provider> -->
+
+         <meta-data android:name="JPUSH_CHANNEL" android:value="${APP_CHANNEL}"/>
+         <meta-data android:name="JPUSH_APPKEY" android:value="${JPUSH_APPKEY}"/>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> 
 
 </manifest>

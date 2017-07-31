@@ -28,6 +28,9 @@ import Detail from '../page/Detail'
 import Search from '../page/Search'
 import Help from '../page/Help'
 import HelpDetail from '../page/HelpDetail'
+import ReportsList from '../page/ReportsList'
+import ReportsDetail from '../page/ReportsDetail'
+
 
 class DrawerScreen extends React.Component {
     constructor(props) {
@@ -40,9 +43,11 @@ class DrawerScreen extends React.Component {
         };
     }
     closeControlPanel = () => {
+        console.log('关')
         this._drawer.close()
     };
     openControlPanel = () => {
+         console.log('开')
         this._drawer.open()
     };
     render() {
@@ -76,7 +81,7 @@ class DrawerScreen extends React.Component {
     }
     componentDidMount() {
         let that = this;
-        let url = 'http://www.dailuopan.com/MPAPI/GetVersion?version=2.0.1'
+        let url = 'http://www.dailuopan.com/MPAPI/GetVersion?version=2.0.10'
         fetch(url)
             .then((response) => {
                 if (response.ok) {
@@ -192,7 +197,13 @@ const AppDlp = StackNavigator({
     },
     HelpDetail: {
         screen: HelpDetail
-    }
+    },
+    ReportsList: {
+        screen: ReportsList
+    },
+    ReportsDetail: {
+        screen: ReportsDetail
+    },
 }, {
         headerMode: 'none'
     })
