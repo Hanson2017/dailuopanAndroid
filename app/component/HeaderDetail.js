@@ -27,7 +27,7 @@ export default class Header extends React.Component {
                 break;
         }
         return (
-            <View style={styles.headerContainer}>
+             <View style={[styles.headerContainer,Platform.OS=='android'?{marginTop:0}:null]}>
                 <TouchableOpacity style={styles.backBtn} onPress={() => { navigation.goBack() }}>
                     <Icon name={'back'} size={18} color={'#fff'} />
                 </TouchableOpacity>

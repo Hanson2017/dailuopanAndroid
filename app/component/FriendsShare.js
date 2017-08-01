@@ -53,23 +53,9 @@ export default class Share extends Component {
         }
         else {
             return (
-                <Animated.View style={[styles.container,
-                {
-                    transform: [{
-                        translateY: this.state.offset.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [height, 0]
-                        }),
-                    }]
-                }
+                <Animated.View style={[styles.container
                 ]}>
-                    <Animated.View style={[styles.mask, {
-                        opacity: this.state.offset.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0, 1]
-                        })
-
-                    }]} >
+                    <Animated.View style={[styles.mask, ]} >
                         <TouchableOpacity style={{ flex: 1 }} onPress={this.cancel.bind(this)}></TouchableOpacity>
                     </Animated.View>
                     <View style={styles.shareBox}>
@@ -178,7 +164,7 @@ export default class Share extends Component {
     cancel(event) {
         if (!this.state.hide) {
             this.props.navigation.goBack();
-            this.outAnimated();
+            // this.outAnimated();
         }
     }
     show() {
@@ -187,7 +173,7 @@ export default class Share extends Component {
             this.setState({
                 hide: false,
                 data: params.data
-            }, this.inAnimated);
+            });
         }
     }
     shareToQQ() {
