@@ -93,13 +93,13 @@ android {
         applicationId "dailuopan.android"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 103
-        versionName "2.0.4"
+        versionCode 104
+        versionName "2.0.5"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
         manifestPlaceholders = [
-            QQ_APPID: "101402579",
+            QQ_APPID: "1105656193",//101402579
             WX_APPID:"wx7ef60efa4201798c",
             JPUSH_APPKEY: "a39ac3af2b8394b72d147d25",   //在此替换你的APPKey
             APP_CHANNEL: "极光安卓"        //应用渠道号
