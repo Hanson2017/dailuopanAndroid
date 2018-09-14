@@ -2,10 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     headerContainer: {
-        marginTop: 23,
         height: 41,
         backgroundColor: '#14191e',
-        // backgroundColor:'red',
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -37,14 +35,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     headerRight: {
-        paddingTop: 8,
         width: 50,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-start',
-    },
-    headerRightShare:{
-        height:28,
+        alignItems: 'center',
     },
     headerRightAndorid: {
         alignItems: 'center',
