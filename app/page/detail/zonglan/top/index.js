@@ -80,7 +80,7 @@ export default class ZonglanTop extends React.Component {
                         <View style={styles.tagsNewContainer}>
                             <View style={styles.tagsNew}>
                                 <View style={styles.tagsNewIcon}>
-                                    <Image source={{ uri: 'http://m.dailuopan.com/images/icon-gtag.png' }} style={styles.icontag} />
+                                    <Image source={{ uri: 'http://m.dailuopan.com/images/icon-gtag.png?20180929' }} style={styles.icontag} />
                                 </View>
                                 <View style={styles.tagsNewCon}>
                                     {
@@ -632,7 +632,7 @@ const styles = StyleSheet.create({
         height: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#00D6E6',
+        backgroundColor: '#0096E6',
         borderRadius: 4,
     },
     tagNewText: {
