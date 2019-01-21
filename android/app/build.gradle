@@ -80,6 +80,9 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
+
+// 3.0.1(108)前版本不能热更新
+
 def enableProguardInReleaseBuilds = false
 
 Properties properties = new Properties()
@@ -93,8 +96,8 @@ android {
         applicationId "dailuopan.android"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 108
-        versionName "3.0.1"
+        versionCode 110
+        versionName "3.0.2"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
