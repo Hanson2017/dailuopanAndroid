@@ -30,16 +30,13 @@ export default class Num extends React.Component {
                     <Text style={[styles.text, styles.label]}>示范出借</Text>
                     <Text style={[styles.text, styles.num]}>{data.Maincount_fund}</Text>
                 </TouchableOpacity>
+                
+                
                 <TouchableOpacity style={styles.list}
-                    onPress={() => { 
-                        if (versionStatus != 1) {
-                            navigation.navigate('FlmfList') 
-                        }
-                       
-                    }}
+                    onPress={() => { navigation.navigate('GongshangBG') }}
                 >
-                    <Text style={[styles.text, styles.label]}>活动平台</Text>
-                    <Text style={[styles.text, styles.num]}>{data.Maincount_Activity}</Text>
+                    <Text style={[styles.text, styles.label]}>工商监控</Text>
+                    <Text style={[styles.text, styles.num]}>{data.Maincount_gongshang}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.list}
                     onPress={() => { navigation.navigate('PingjiJG') }}
@@ -48,10 +45,10 @@ export default class Num extends React.Component {
                     <Text style={[styles.text, styles.num]}>{data.Maincount_flow}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.list}
-                    onPress={() => { navigation.navigate('GongshangBG') }}
+                    onPress={() => { navigation.navigate('StopSent') }}
                 >
-                    <Text style={[styles.text, styles.label]}>工商监控</Text>
-                    <Text style={[styles.text, styles.num]}>{data.Maincount_gongshang}</Text>
+                    <Text style={[styles.text, styles.label]}>停止发标</Text>
+                    <Text style={[styles.text, styles.num, { color: '#A81616' }]}>{data.Maincount_stopbid}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.list}
                     onPress={() => { navigation.navigate('Zhengyi') }}

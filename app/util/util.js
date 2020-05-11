@@ -1,9 +1,41 @@
 import React, { Component } from 'react';
-import { Linking } from 'react-native';
+import { Linking ,Dimensions,Platform} from 'react-native';
+
+let screenW = Dimensions.get('window').width;
+let screenH = Dimensions.get('window').height;
+
+// iPhoneX,iPhoneXS
+const X_WIDTH = 375;
+const X_HEIGHT = 812;
+
+// iPhoneXR,iPhoneXS Max
+const XR_WIDTH = 414;
+const XR_HEIGHT = 896;
+
 
 import Api from './api';
 
 module.exports = {
+    // IphoneX系列
+    isIphoneX() {
+        return (
+            Platform.OS === 'ios' &&
+            ((screenH === X_HEIGHT && screenW === X_WIDTH) || (screenH === X_WIDTH && screenW === X_HEIGHT) || (screenH === XR_HEIGHT && screenW === XR_WIDTH) || (screenH === XR_WIDTH && screenW === XR_HEIGHT))
+
+        )
+    },
+    ifIphoneX(iphoneXStyle, iosStyle, androidStyle) {
+        if (this.isIphoneX()) {
+            return iphoneXStyle;
+        }
+        else if (Platform.OS === 'ios') {
+            return iosStyle
+        }
+        else {
+            if (androidStyle) return androidStyle;
+            return iosStyle
+        }
+    },
     // 判断是否为一线平台
     isbest(val) {
         var isbest = false;
@@ -147,6 +179,44 @@ module.exports = {
     cutText(str, word) {
         if (str.length > word) return str.substr(0, word) + "...";
         return str;
+    },
+    formatSymbol(str) {
+        let strs;
+        strs = str.replace('，', ',')
+        return strs.split(',');
+    },
+    countTime(val, dateDiff) {
+
+        //获取当前时间  
+        var date = new Date();
+        var now = date.getTime() + dateDiff;
+        //设置截止时间  
+
+        var endDate = new Date(parseInt(val.replace("/Date(", "").replace(")/", "")));
+        var end = endDate.getTime();
+
+        //时间差  
+        var leftTime = end - now;
+
+        if (leftTime <= 0) {
+            return '活动已结束';
+        }
+
+        //定义变量 d,h,m,s保存倒计时的时间  
+        var d, h, m, s;
+        if (leftTime >= 0) {
+            d = Math.floor(leftTime / 1000 / 60 / 60 / 24) * 24;
+            h = Math.floor(leftTime / 1000 / 60 / 60 % 24) + d;
+            m = Math.floor(leftTime / 1000 / 60 % 60);
+            s = Math.floor(leftTime / 1000 % 60);
+        }
+        //将倒计时赋值到div中  
+
+        var mm = m < 10 ? '0' + m : m;
+        var ss = s < 10 ? '0' + s : s;
+
+        return h + ':' + mm + ':' + ss
+
     },
     // 去掉所有的html标记
     delHtmlTag(str) {
